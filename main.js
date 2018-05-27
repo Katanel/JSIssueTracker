@@ -25,18 +25,44 @@ function saveIssue(e) {
         localStorage.setItem('issues', JSON.stringify(issues));
     }
 
-    document.getElementById('issueInputForm').requestFullscreen();
+    document.getElementById('issueInputForm').reset();
 
     fetchIssues();
 
     e.preventDefault();
 }
 
+function setClosed(id){
+    var issues = JSON.parse(localStorage.getItem('issues'));
+
+    for (var i=0; i<issues.lenght; i++){
+        if(issues [i].id == id ) {
+            issues[i].status = 'Closed';
+        }
+    }
+    localStorage.setItem('issues', JSON.stringify(issues));
+
+    fetchIssues();
+} 
+
+function setClosed(id){
+    var issues = JSON.parse(localStorage.getItem('issues'));
+
+    for (var i=0; i<issues.lenght; i++){
+        if(issues [i].id == id ) {
+            issues.splice(i,1);
+        }
+    }
+    localStorage.setItem('issues', JSON.stringify(issues));
+
+    fetchIssues();
+} 
+
 function fetchIssues() {
     var issues = JSON.parse(localStorage.getItem('issues'));
-    var issuesList = document.getElementById('issuesList');
+    var issuesListe = document.getElementById('issuesList');
 
-    issuesList.innerHTML = '';
+    issuesList.innerHTML = "";
 
     for (var i = 0; i < issues.length; i++) {
         var id = issues[i].id;
