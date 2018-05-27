@@ -60,7 +60,7 @@ function setClosed(id){
 
 function fetchIssues() {
     var issues = JSON.parse(localStorage.getItem('issues'));
-    var issuesListe = document.getElementById('issuesList');
+    var issuesList = document.getElementById('issuesList');
 
     issuesList.innerHTML = "";
 
